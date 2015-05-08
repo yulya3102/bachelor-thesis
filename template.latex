@@ -1,0 +1,24 @@
+\title{Осуществление некоторой вроде бы полезной деятельности, достаточно нетривиальной, чтобы считаться НИР}
+\author{Иванов И. И.\\
+Научный руководитель: Петров П. П.}
+
+
+\input{preamble.latex}
+
+\begin{document}
+$include-before$
+
+\input{Title.latex}
+\addtocounter{page}{1}
+\clearpage\mbox{}\clearpage
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+$body$
+
+\bibliography{bib}
+
+$include-after$
+\end{document}

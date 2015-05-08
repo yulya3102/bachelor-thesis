@@ -1,0 +1,17 @@
+\newcommand\src[4]{%
+    \item \autoref{#1} —
+          автор: #2,
+          лицензия: #3, \\
+          #4.
+}
+
+% Author templates
+\newcommand\authorcommons[1]{\href{https://commons.wikimedia.org/wiki/User:#1}{#1}}
+
+% License templates
+\newcommand\licenseccbytwofive{\href{https://creativecommons.org/licenses/by/2.5/deed.ru}{Creative Commons Attribution 2.5 Generic}}
+\newcommand\licenseccbysa{\href{https://creativecommons.org/licenses/by-sa/3.0/deed.ru}{Creative Commons Attribution-Share Alike 3.0 Unported}}
+\newcommand\licensewtfpl{\href{http://www.wtfpl.net/}{Do What the Fuck You Want to Public License}}
+
+% Source templates
+\newcommand\sourcecommons[1]{\url{https://commons.wikimedia.org/wiki/File:#1}}
