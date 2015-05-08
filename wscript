@@ -8,10 +8,6 @@ def build(bld):
     sources = """
         Introduction.pd
         ch_First/chapter.latex
-        ch_First/sec_Intro.pd
-        ch_First/sec_Moar.pd
-        ch_Second/chapter.latex
-        ch_Second/sec_Text.pd
         Conclusion.pd
         Licensing.pd
     """
