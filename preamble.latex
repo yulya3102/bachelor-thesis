@@ -10,6 +10,8 @@
 \setsansfont{Liberation Sans}
 \newfontfamily{\cyrillicfonttt}{Liberation Mono}
 
+\usepackage{agda}
+
 \usepackage{polyglossia}
 \setmainlanguage{russian}
 \setotherlanguage{english}
@@ -177,9 +179,9 @@
     stringstyle=\color{redstrings}
 }
 \renewcommand\lstlistingname{Листинг}
-\lstnewenvironment{code}[1][]
-    {\lstset{float=ht,#1}}
-        {}
+%\lstnewenvironment{code}[1][]
+    %{\lstset{float=ht,#1}}
+        %{}
 
 % For some reason those are missing in polyglossia
 \def\bbljan{янв}
