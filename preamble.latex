@@ -149,7 +149,7 @@
 \def\figureautorefname{Рисунок}
 
 
-\usepackage{mathtools}
+%\usepackage{mathtools}
 
 
 \usepackage{xcolor}
