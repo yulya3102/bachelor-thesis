@@ -12,6 +12,7 @@ def build(bld):
         ch_Development/sec_Instructions.pd
         ch_Development/Instructions.latex
         ch_Development/sec_SSAProblems.pd
+        ch_Development/sec_Conclusion.pd
         Conclusion.pd
         Licensing.pd
     """
