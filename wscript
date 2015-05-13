@@ -15,6 +15,7 @@ def build(bld):
         ch_Development/sec_Diffs.pd
         ch_Development/sec_Meta.pd
         ch_Development/sec_Conclusion.latex
+        ch_Result/chapter.latex
         Conclusion.pd
         Licensing.pd
     """
