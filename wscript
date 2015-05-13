@@ -12,6 +12,8 @@ def build(bld):
         ch_Development/sec_Instructions.pd
         ch_Development/Instructions.latex
         ch_Development/sec_SSAProblems.pd
+        ch_Development/sec_Diffs.pd
+        ch_Development/sec_Meta.pd
         ch_Development/sec_Conclusion.latex
         Conclusion.pd
         Licensing.pd
