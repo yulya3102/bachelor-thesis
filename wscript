@@ -13,6 +13,7 @@ def build(bld):
         ch_Development/Instructions.latex
         ch_Development/sec_SSAProblems.pd
         ch_Development/sec_Diffs.pd
+        ch_Development/NotSSAInstructions.latex
         ch_Development/sec_Meta.pd
         ch_Development/sec_Conclusion.latex
         ch_Result/chapter.latex
