@@ -10,7 +10,7 @@ def build(bld):
         ch_First/chapter.latex
         ch_Development/chapter.latex
         ch_Development/sec_SSA/section.pd
-        ch_Development/Instructions.latex
+        ch_Development/SSA.latex
         ch_Development/sec_SSA/problems.pd
         ch_Development/sec_Diffs.pd
         ch_Development/NotSSAInstructions.latex

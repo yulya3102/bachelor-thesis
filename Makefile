@@ -3,7 +3,7 @@ all: report
 report: agda
 	./waf
 
-AGDA = Instructions NotSSAInstructions Assembler
+AGDA = SSA NotSSAInstructions Assembler
 
 agda:
 	@for lagda in $(AGDA) ; do \
