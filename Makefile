@@ -1,13 +1,7 @@
 all: report
 
-report: agda
+report: agda-latex
 	./waf
 
-AGDA = SSA NotSSA Assembler
-
-agda:
-	@for lagda in $(AGDA) ; do \
-		cd .. && agda --latex --latex-dir report/ch_Development/ --allow-unsolved-metas $$lagda.lagda; \
-		cd -; \
-		mv ch_Development/$$lagda.tex ch_Development/$$lagda.latex; \
-	done
+agda-latex:
+	make -C ..

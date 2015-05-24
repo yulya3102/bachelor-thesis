@@ -10,12 +10,12 @@ def build(bld):
         ch_First/chapter.latex
         ch_Development/chapter.latex
         ch_Development/sec_SSA/section.pd
-        ch_Development/SSA.latex
+        agda-latex/SSA.latex
         ch_Development/sec_SSA/problems.pd
         ch_Development/sec_Diffs.pd
-        ch_Development/NotSSA.latex
+        agda-latex/NotSSA.latex
         ch_Development/sec_Meta/section.pd
-        ch_Development/Assembler.latex
+        agda-latex/Assembler.latex
         ch_Development/sec_Meta/problems.pd
         ch_Development/sec_Conclusion.latex
         ch_Result/chapter.latex
