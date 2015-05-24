@@ -15,7 +15,7 @@ def build(bld):
         ch_Development/sec_Diffs.pd
         agda-latex/NotSSA.latex
         ch_Development/sec_Meta/section.pd
-        agda-latex/Assembler.latex
+        agda-latex/Meta.latex
         ch_Development/sec_Meta/problems.pd
         ch_Development/sec_Conclusion.latex
         ch_Result/chapter.latex
