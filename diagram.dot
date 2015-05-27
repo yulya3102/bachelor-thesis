@@ -44,6 +44,13 @@ digraph G {
         In [ label = Iₙ, shape = none ]
         In -> in1 [ style = invis ]
     }
+    subgraph cluster_Is {
+        node [ shape = none, label = "..." ]
+        edge [ style = invis ]
+        style = invis
+        Is -> is1 -> is2 -> is3 -> is4 -> is5 -> is6
+        Is [ label = "", shape = none ]
+    }
     subgraph cluster_I1 {
         style = invis
         i11 -> i12 -> i13 -> i14 -> i15 -> i16
@@ -63,19 +70,22 @@ digraph G {
         s2 -> i13
         s3 -> i13
         s4 -> i14
-        subgraph {
-            edge [ style = dotted ]
-            i11 -> in1
-            i12 -> in2
-            i13 -> in3
-            i14 -> in4
-        }
+
+        i11 -> is1
+        i12 -> is2
+        i13 -> is3
+        i14 -> is4
+
+        is1 -> in1
+        is2 -> in2
+        is3 -> in3
+        is4 -> in4
+
         subgraph {
             edge [ color = blue ]
             in1 -> asm1
             in2 -> asm2
             in2 -> asm3
-            in2 -> asm4
             in3 -> asm3
             in4 -> asm4
             in5 -> asm5
