@@ -9,6 +9,8 @@ def build(bld):
         Introduction.pd
         ch_First/chapter.latex
         ch_Development/chapter.latex
+        ch_Development/sec_Core/section.pd
+        agda-latex/Core.latex
         ch_Development/sec_SSA/section.pd
         agda-latex/SSA.latex
         ch_Development/sec_SSA/problems.pd
