@@ -13,24 +13,27 @@ digraph G {
     }
     subgraph cluster_map {
         style = invis
-        node [ color = green ]
+        node [ color = darkgreen, fillcolor = grey, style = filled ]
         edge [ style = invis ]
         map -> map1 -> map2 -> map3 -> map4 -> map5 -> map6
-        map [ label = "map mem", shape = none ]
+        map [ label = "map mem", shape = none, style = solid ]
+        map3 [ color = green, style = solid ]
     }
     subgraph cluster_obj {
         style = invis
-        node [ color = red ]
+        node [ color = brown, fillcolor = grey, style = filled ]
         edge [ style = invis ]
         obj -> obj1 -> obj2 -> obj3 -> obj4 -> obj5 -> obj6
-        obj [ label = ".o", shape = none ]
+        obj [ label = ".o", shape = none, style = solid ]
+        obj3 [ color = red, style = solid ]
     }
     subgraph cluster_op {
         style = invis
-        node [ color = red ]
+        node [ color = brown, fillcolor = grey, style = filled ]
         edge [ style = invis ]
         op -> op1 -> op2 -> op3 -> op4 -> op5 -> op6
-        op [ label = opcode, shape = none ]
+        op [ label = opcode, shape = none, style = solid ]
+        op3 [ color = red, style = solid ]
     }
     subgraph cluster_ASM {
         style = invis
