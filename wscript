@@ -10,7 +10,7 @@ def build(bld):
         ch_First/chapter.latex
         ch_Development/chapter.latex
         ch_Development/sec_Core/section.pd
-        agda-latex/Core.latex
+        agda-latex/DevCore.latex
         ch_Development/sec_SSA/section.pd
         agda-latex/SSA.latex
         ch_Development/sec_SSA/problems.pd
