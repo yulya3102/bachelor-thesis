@@ -19,6 +19,7 @@ def build(bld):
         ch_Development/sec_Meta/problems.pd
         ch_Development/sec_Conclusion.latex
         ch_Result/chapter.latex
+        agda-latex/Functions.latex
         Conclusion.pd
         Licensing.pd
     """
