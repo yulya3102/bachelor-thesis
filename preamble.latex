@@ -11,6 +11,7 @@
 \newfontfamily{\cyrillicfonttt}{Liberation Mono}
 
 \usepackage{agda}
+\newcommand{\ignore}[1]{}
 
 \usepackage{polyglossia}
 \setmainlanguage{russian}
