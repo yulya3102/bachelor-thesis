@@ -15,7 +15,7 @@
    inkscape:version="0.48.5 r10040"
    width="1112"
    height="741"
-   sodipodi:docname="memory.svg">
+   sodipodi:docname="ld.svg">
   <metadata
      id="metadata7591">
     <rdf:RDF>
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,14 +42,18 @@
      inkscape:window-width="1366"
      inkscape:window-height="752"
      id="namedview7587"
-     showgrid="false"
+     showgrid="true"
      inkscape:zoom="0.78272605"
-     inkscape:cx="718.63398"
+     inkscape:cx="243.63018"
      inkscape:cy="370.5"
      inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg7585" />
+     inkscape:current-layer="svg7585">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4096" />
+  </sodipodi:namedview>
   <image
      width="1112"
      height="741"
@@ -58,8 +62,9 @@
      x="0"
      y="0" />
   <path
-     style="fill:none;stroke:#00ff00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 862.37069,323.22931 -707.78276,1.27759 1.27759,406.27241 857.26038,-1.27759 z"
-     id="path8541"
-     inkscape:connector-curvature="0" />
+     style="fill:none;stroke:#00ff00;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     d="m 820,321 -620,0 0,340 720,0 z"
+     id="path4098"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccc" />
 </svg>

@@ -15,7 +15,7 @@
    inkscape:version="0.48.5 r10040"
    width="1112"
    height="741"
-   sodipodi:docname="compcert.svg">
+   sodipodi:docname="vellvm.svg">
   <metadata
      id="metadata7591">
     <rdf:RDF>
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,14 +42,18 @@
      inkscape:window-width="1366"
      inkscape:window-height="752"
      id="namedview7587"
-     showgrid="false"
+     showgrid="true"
      inkscape:zoom="0.78272605"
-     inkscape:cx="349.66983"
+     inkscape:cx="448.04397"
      inkscape:cy="370.5"
      inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg7585" />
+     inkscape:current-layer="svg7585">
+    <inkscape:grid
+       type="xygrid"
+       id="grid8475" />
+  </sodipodi:namedview>
   <image
      width="1112"
      height="741"
@@ -58,10 +62,10 @@
      x="0"
      y="0" />
   <rect
-     style="fill:none;stroke:#0000ff;stroke-width:1.02697217;stroke-opacity:1"
+     style="fill:none;stroke:#0000ff;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
      id="rect8405"
-     width="706.50519"
-     height="165.73439"
-     x="155.86551"
-     y="245.38948" />
+     width="620"
+     height="140"
+     x="200"
+     y="261" />
 </svg>

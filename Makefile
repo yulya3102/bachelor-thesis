@@ -1,11 +1,13 @@
 all: slides
 
-diagram: diagram.dot
-	rm diagram.png
-	dot -Tpng -o diagram.png diagram.dot
+pre-diagram.png: diagram.dot
+	dot -Tpng -o $@ $<
 
-%.png: %.svg diagram
+diagram.png: axis.svg pre-diagram.png
 	convert $< $@
 
-slides: slides.md diagram compcert.png vellvm.png faith.png memory.png ld.png
+%.png: %.svg diagram.png
+	convert $< $@
+
+slides: slides.md diagram.png compcert.png vellvm.png faith.png memory.png ld.png
 	pandoc -V lang=russian -t beamer -s slides.md -o presentation.pdf
