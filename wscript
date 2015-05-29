@@ -7,7 +7,7 @@ def configure(conf):
 def build(bld):
     sources = """
         Introduction.pd
-        ch_First/chapter.latex
+        ch_First/chapter.pd
         ch_Development/chapter.latex
         ch_Development/sec_Core/section.pd
         agda-latex/DevCore.latex
