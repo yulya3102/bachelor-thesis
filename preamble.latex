@@ -159,7 +159,6 @@
 \definecolor{bluekw}{rgb}{0,0,0.5}
 \definecolor{redstrings}{rgb}{0.5,0,0}
 \definecolor{graylinenumbers}{rgb}{0.5,0.5,0.5}
-\input{pseudo.latex}
 \lstset{%
     basicstyle=\footnotesize\ttfamily,
     columns=fullflexible,
