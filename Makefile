@@ -1,23 +1,27 @@
 report: main.pdf
 
-REPORT = Introduction.latex \
-         ch_First/chapter.latex \
-         ch_Development/chapter.latex \
-         ch_Development/sec_Core/section.latex \
-         agda-latex/DevCore.latex \
-         ch_Development/sec_SSA/section.latex \
-         agda-latex/SSA.latex \
-         ch_Development/sec_SSA/problems.latex \
-         ch_Development/sec_Diffs.latex \
-         agda-latex/NotSSA.latex \
-         ch_Development/sec_Meta/section.latex \
-         agda-latex/Meta.latex \
-         ch_Development/sec_Meta/problems.latex \
-         ch_Development/sec_Conclusion.latex \
-         ch_Result/chapter.latex \
-         agda-latex/Functions.latex \
-         Conclusion.latex \
-         Licensing.latex
+REPORT_SOURCES = \
+	Introduction.pd \
+	ch_First/chapter.pd \
+	ch_Development/chapter.latex \
+	ch_Development/sec_Core/section.pd \
+	../DevCore.lagda \
+	ch_Development/sec_SSA/section.pd \
+	../SSA.lagda \
+	ch_Development/sec_SSA/problems.pd \
+	ch_Development/sec_Diffs.pd \
+	../NotSSA.lagda \
+	ch_Development/sec_Meta/section.pd \
+	../Meta.lagda \
+	ch_Development/sec_Meta/problems.pd \
+	ch_Development/sec_Conclusion.latex \
+	ch_Result/chapter.latex \
+	../Functions.lagda \
+	Conclusion.pd \
+	Licensing.pd
+
+REPORT_AGDA_TRANSLATED = $(patsubst ../%.lagda,agda-latex/%.latex,$(REPORT_SOURCES))
+REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
 
 %.latex: %.pd
 	pandoc \
