@@ -4,18 +4,18 @@ REPORT = Introduction.latex \
          ch_First/chapter.latex \
          ch_Development/chapter.latex \
          ch_Development/sec_Core/section.latex \
-         agda-latex/DevCore.tex \
+         agda-latex/DevCore.latex \
          ch_Development/sec_SSA/section.latex \
-         agda-latex/SSA.tex \
+         agda-latex/SSA.latex \
          ch_Development/sec_SSA/problems.latex \
          ch_Development/sec_Diffs.latex \
-         agda-latex/NotSSA.tex \
+         agda-latex/NotSSA.latex \
          ch_Development/sec_Meta/section.latex \
-         agda-latex/Meta.tex \
+         agda-latex/Meta.latex \
          ch_Development/sec_Meta/problems.latex \
          ch_Development/sec_Conclusion.latex \
          ch_Result/chapter.latex \
-         agda-latex/Functions.tex \
+         agda-latex/Functions.latex \
          Conclusion.latex \
          Licensing.latex
 
@@ -27,6 +27,9 @@ REPORT = Introduction.latex \
 		-R -S --latex-engine=xelatex \
 		--listings --chapters \
 		-o $@ $<
+
+agda-latex/%.pd: agda-latex/%.tex
+	mv $< $@
 
 agda-latex/%.tex: ../%.lagda
 	make -C .. $(patsubst agda-latex/%,%,$(@))
