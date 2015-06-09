@@ -8,7 +8,6 @@ REPORT_SOURCES = \
 	ch_Development/sec_SSA/section.pd \
 	../SSA.lagda \
 	ch_Development/sec_SSA/problems.pd \
-	ch_Development/sec_Diffs.pd \
 	../NotSSA.lagda \
 	ch_Development/sec_Meta/section.pd \
 	../Meta.lagda \
