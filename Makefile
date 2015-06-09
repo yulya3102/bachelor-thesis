@@ -4,7 +4,6 @@ REPORT_SOURCES = \
 	Introduction.pd \
 	ch_First/chapter.pd \
 	ch_Development/chapter.latex \
-	ch_Development/sec_Core/section.pd \
 	../DevCore.lagda \
 	ch_Development/sec_SSA/section.pd \
 	../SSA.lagda \
