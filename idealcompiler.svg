@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="1112"
+   height="741"
+   id="svg7585">
+  <metadata
+     id="metadata7591">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs7589" />
+  <image
+     xlink:href="file:///home/yulya3102/Dropbox/itmo/year4/thesis/agda/slides1/diagram.png"
+     x="0"
+     y="0"
+     width="1112"
+     height="741"
+     id="image7593" />
+  <rect
+     width="620"
+     height="340"
+     x="200"
+     y="61"
+     id="rect8405"
+     style="fill:none;stroke:#0000ff;stroke-width:3.30583906;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+</svg>

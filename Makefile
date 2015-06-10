@@ -9,5 +9,5 @@ diagram.png: axis.svg pre-diagram.png
 %.png: %.svg diagram.png
 	convert $< $@
 
-slides: slides.md diagram.png idealworld.png compcert.png vellvm.png faith.png memory.png ld.png
+slides: slides.md diagram.png idealworld.png idealcompiler.png compcert.png vellvm.png faith.png memory.png ld.png
 	pandoc -V lang=russian -t beamer -s slides.md -o presentation.pdf --template=default.beamer
