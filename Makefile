@@ -10,4 +10,4 @@ diagram.png: axis.svg pre-diagram.png
 	convert $< $@
 
 slides: slides.md diagram.png compcert.png vellvm.png faith.png memory.png ld.png
-	pandoc -V lang=russian -t beamer -s slides.md -o presentation.pdf
+	pandoc -V lang=russian -t beamer -s slides.md -o presentation.pdf --template=default.beamer
