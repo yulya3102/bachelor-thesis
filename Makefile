@@ -11,7 +11,7 @@ REPORT_SOURCES = \
 	../NotSSA.lagda \
 	../Meta.lagda \
 	ch_Development/sec_Conclusion.pd \
-	ch_Result/chapter.latex \
+	ch_Result/chapter.pd \
 	../Functions.lagda \
 	Conclusion.pd \
 	Licensing.pd
