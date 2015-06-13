@@ -10,7 +10,7 @@ REPORT_SOURCES = \
 	ch_Development/sec_SSA/problems.pd \
 	../NotSSA.lagda \
 	../Meta.lagda \
-	ch_Development/sec_Conclusion.latex \
+	ch_Development/sec_Conclusion.pd \
 	ch_Result/chapter.latex \
 	../Functions.lagda \
 	Conclusion.pd \
