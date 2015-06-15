@@ -46,3 +46,5 @@ main.pdf: main.latex
 	xelatex main.latex
 	bibtex main
 	xelatex main.latex
+	xelatex main.latex
+
