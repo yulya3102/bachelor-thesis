@@ -20,7 +20,7 @@
 
 ---
 
-![](diagram.png)
+![](../images/diagram.png)
 
 ---
 
@@ -34,7 +34,7 @@
 
 ---
 
-![](idealworld.png)
+![](../images/idealworld.png)
 
 В идеальном мире диаграмма коммутативна: $t \circ o = e \circ t$
 
@@ -47,11 +47,11 @@
 
 # Идеальный компилятор
 
-![](idealcompiler.png)
+![](../images/idealcompiler.png)
 
 ---
 
-![](faith.png)
+![](../images/faith.png)
 
 ---
 
@@ -83,19 +83,19 @@
 
 # CompCert
 
-![](compcert.png)
+![](../images/compcert.png)
 
 ---
 
 # VeLLVM
 
-![](vellvm.png)
+![](../images/vellvm.png)
 
 ---
 
 # Цель работы
 
-![](ld.png)
+![](../images/ld.png)
 
 ---
 
