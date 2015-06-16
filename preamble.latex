@@ -21,7 +21,7 @@
 %\bibliographystyle{utf8gost705u}
 \bibliographystyle{utf8gost705u}
 \renewcommand{\bibnumfmt}[1]{#1.\hfill}
-\renewcommand{\bibsection}{\likechapter{Список литературы}\vspace{-2em}}
+\renewcommand{\bibsection}{\likechapter{Список источников}\vspace{-2em}}
 \setlength{\bibsep}{0pt}
 \renewcommand{\bibfont}{\footnotesize}
 
