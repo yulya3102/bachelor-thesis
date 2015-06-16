@@ -119,17 +119,97 @@
 
 # Основные сущности и типы
 
-**TODO: определения RegTypes, DataType, DataStackType и CallStackType**
+*   Тип, значение которого может находиться в регистрах, и тип, описывающий
+    состояние всех регистров:
 
-**TODO: определения RegType и Type**
+\begin{code}%
+\>\AgdaKeyword{data} \AgdaDatatype{RegType} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\\
+\>\AgdaFunction{RegTypes} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{RegType}\<%
+\end{code}
+
+*   Тип произвольного размера и тип, описывающий состояние памяти:
+
+\begin{code}%
+\>\AgdaKeyword{data} \AgdaDatatype{Type} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\\
+\>\AgdaFunction{DataType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{Type}\<%
+\end{code}
+
+*   Стек данных и стек вызовов:
+
+\begin{code}%
+\>\AgdaFunction{DataStackType} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\\
+\>\AgdaFunction{CallStackType} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\end{code}
+
+---
+
+# Основные сущности и типы
+
+*   Типы данных:
+
+\begin{code}%
+\>\AgdaKeyword{data} \AgdaDatatype{RegType} \AgdaKeyword{where}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaInductiveConstructor{\_*} \<[6]%
+\>[6]\AgdaSymbol{:} \AgdaDatatype{Type} \AgdaSymbol{→} \AgdaDatatype{RegType}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaInductiveConstructor{int} \AgdaSymbol{:} \AgdaDatatype{RegType}\<%
+\end{code}
+
+\begin{code}%
+\>\AgdaKeyword{data} \AgdaDatatype{Type} \AgdaKeyword{where}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaInductiveConstructor{atom} \AgdaSymbol{:} \AgdaDatatype{RegType} \AgdaSymbol{→} \AgdaDatatype{Type}\<%
+\\
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaInductiveConstructor{block} \AgdaSymbol{:} \AgdaFunction{RegTypes}\<%
+\\
+\>[2]\AgdaIndent{8}{}\<[8]%
+\>[8]\AgdaSymbol{→} \AgdaFunction{DataStackType}\<%
+\\
+\>[2]\AgdaIndent{8}{}\<[8]%
+\>[8]\AgdaSymbol{→} \AgdaFunction{CallStackType}\<%
+\\
+\>[2]\AgdaIndent{8}{}\<[8]%
+\>[8]\AgdaSymbol{→} \AgdaDatatype{Type}\<%
+\end{code}
+
+*   Стек вызовов и стек данных:
+
+\begin{code}%
+\>\AgdaFunction{DataStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{RegType}\<%
+\end{code}
+
+\begin{code}%
+\>\AgdaFunction{CallStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaSymbol{(}\AgdaFunction{RegTypes} \AgdaFunction{×} \AgdaFunction{DataStackType}\AgdaSymbol{)}\<%
+\end{code}
 
 ---
 
 # Инструкции
 
-**TODO: сигнатура управляющей инструкции**
+*   Управляющая инструкция:
 
-**TODO: сигнатура обычной инструкции**
+\begin{code}%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaKeyword{data} \AgdaDatatype{ControlInstr} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{)}\<%
+\\
+\>[2]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{:} \AgdaDatatype{Maybe} \AgdaSymbol{(}\AgdaFunction{CallStackChg} \AgdaBound{S}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\end{code}
+
+*   Не-управляющая инструкция:
+
+\begin{code}
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaKeyword{data} \AgdaDatatype{Instr} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{)} \AgdaSymbol{:} \AgdaDatatype{SmallChg} \AgdaBound{S} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\end{code}
 
 ---
 
@@ -140,7 +220,45 @@
 *   Общую для всех языков ассемблера часть можно определить независимо от
     конкретного языка ассемблера
 
-**TODO: сигнатура Block и exec-block (полные, с учетом параметров модуля)**
+\begin{code}%
+\>[0]\AgdaIndent{2}{}\<[2]%
+\>[2]\AgdaKeyword{module} \AgdaModule{Blocks}\<%
+\\
+\>[2]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaSymbol{(}\AgdaBound{ControlInstr} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{18}{}\<[18]%
+\>[18]\AgdaSymbol{→} \AgdaDatatype{Maybe} \AgdaSymbol{(}\AgdaFunction{CallStackChg} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{18}{}\<[18]%
+\>[18]\AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaSymbol{(}\AgdaBound{Instr} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaDatatype{SmallChg} \AgdaBound{S} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaKeyword{where}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaKeyword{data} \AgdaDatatype{Block} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{)} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{S} \AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\end{code}
+
+<!---
+хотелось бы показать, что еще есть exec-block, но у всех exec-* очень
+страшные сигнатуры
+-->
+
+---
+
+# Мета-ассемблер
+
+*   Определения, относящиеся к мета-ассемблеру, можно получать по
+    минимальному описанию конкретного языка ассемблера:
+    
+    *   тип управляющей инструкции;
+    *   тип не-управляющей инструкции;
+    *   функция, определяющая результат исполнения управляющей инструкции;
+    *   функция, определяющая результат исполнения не-управляющей инструкции.
 
 ---
 
@@ -152,21 +270,65 @@
     и $A$ из состояния $S_A$, и $B$ из состояния $S_B$ приводят к $C$ и
     состоянию $S_C$
 
-**TODO: определение BlockEq**
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaKeyword{data} \AgdaDatatype{BlockEq}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{ST₁} \AgdaBound{ST₂} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{d₁} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₁}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{d₂} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₂}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S₁} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₁}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaBound{S₂} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₂}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaBound{Block} \AgdaBound{ST₁} \AgdaBound{d₁} \AgdaSymbol{→} \AgdaBound{Block} \AgdaBound{ST₂} \AgdaBound{d₂}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\end{code}
 
 ---
 
-# Мета-ассемблер
+# Ассемблер: примеры инструкций
 
-*   Определения, относящиеся к мета-ассемблеру, можно получать по
-    минимальному описанию конкретного языка ассемблера:
+*   Непрямой `jmp`:
 
-**TODO: 2Meta.exec-block**
+\begin{code}
+\>[4]\AgdaInductiveConstructor{jmp[\_]} \AgdaSymbol{:} \AgdaSymbol{(}\AgdaBound{ptr} \AgdaSymbol{:} \AgdaInductiveConstructor{atom}\<%
+\\
+\>[4]\AgdaIndent{11}{}\<[11]%
+\>[11]\AgdaSymbol{(}\AgdaInductiveConstructor{block}\<%
+\\
+\>[4]\AgdaIndent{11}{}\<[11]%
+\>[11]\AgdaSymbol{(}\AgdaField{StateType.registers} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{11}{}\<[11]%
+\>[11]\AgdaSymbol{(}\AgdaField{StateType.datastack} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{11}{}\<[11]%
+\>[11]\AgdaSymbol{(}\AgdaField{StateType.callstack} \AgdaBound{S}\AgdaSymbol{)} \AgdaInductiveConstructor{*}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{11}{}\<[11]%
+\>[11]\AgdaFunction{∈} \AgdaField{StateType.memory} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{9}{}\<[9]%
+\>[9]\AgdaSymbol{→} \AgdaDatatype{ControlInstr} \AgdaBound{S} \AgdaInductiveConstructor{nothing}\<%
+\end{code}
 
----
+*   `push` значения из регистра:
 
-**TODO: возможно, тут должно быть определение различных инструкций из
-модуля AMD64**
+\begin{code}
+\>[4]\AgdaInductiveConstructor{push} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{r}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{9}{}\<[9]%
+\>[9]\AgdaSymbol{→} \AgdaBound{r} \AgdaFunction{∈} \AgdaField{StateType.registers} \AgdaBound{S}\<%
+\\
+\>[4]\AgdaIndent{9}{}\<[9]%
+\>[9]\AgdaSymbol{→} \AgdaDatatype{Instr} \AgdaBound{S} \AgdaSymbol{(}\AgdaInductiveConstructor{onlystack} \AgdaSymbol{(}\AgdaInductiveConstructor{StackDiff.push} \AgdaBound{r}\AgdaSymbol{))}\<%
+\end{code}
 
 ---
 
@@ -174,11 +336,23 @@
 
 *   При динамической линковке в память добавляются таблицы GOT и PLT:
 
-**TODO: pltize**
+\begin{code}%
+\>[2]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{pltize} \AgdaSymbol{:} \AgdaFunction{DataType} \AgdaSymbol{→} \AgdaFunction{DataType}\<%
+\end{code}
 
 *   Элемент таблицы PLT выглядит следующим образом:
 
-**TODO: plt-stub**
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{plt-stub} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaInductiveConstructor{atom} \AgdaSymbol{(}\AgdaInductiveConstructor{block} \AgdaBound{R} \AgdaBound{DS} \AgdaBound{CS} \AgdaInductiveConstructor{*}\AgdaSymbol{)} \AgdaFunction{∈} \AgdaBound{H}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaSymbol{→} \AgdaDatatype{Block} \AgdaSymbol{(}\AgdaInductiveConstructor{statetype} \AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{)} \AgdaFunction{dempty}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{plt-stub} \AgdaBound{got} \AgdaSymbol{=} \AgdaInductiveConstructor{↝} \AgdaInductiveConstructor{jmp[} \AgdaBound{got} \AgdaInductiveConstructor{]}\<%
+\end{code}
 
 ---
 
@@ -188,7 +362,40 @@
     эквивалентно состоянию исполнителя после исполнения непрямого `jmp`
     по указателю на ее тело:
 
-**TODO: exec-ijmp**
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{exec-ijmp} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{ST}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{14}{}\<[14]%
+\>[14]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{p} \AgdaSymbol{:} \AgdaInductiveConstructor{atom} \AgdaSymbol{(}\AgdaInductiveConstructor{block}\<%
+\\
+\>[14]\AgdaIndent{19}{}\<[19]%
+\>[19]\AgdaSymbol{(}\AgdaField{StateType.registers} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\\
+\>[14]\AgdaIndent{19}{}\<[19]%
+\>[19]\AgdaSymbol{(}\AgdaField{StateType.datastack} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\\
+\>[14]\AgdaIndent{19}{}\<[19]%
+\>[19]\AgdaSymbol{(}\AgdaField{StateType.callstack} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{17}{}\<[17]%
+\>[17]\AgdaInductiveConstructor{*}\AgdaSymbol{)} \AgdaFunction{∈} \AgdaField{StateType.memory} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{14}{}\<[14]%
+\>[14]\AgdaSymbol{→} \AgdaFunction{exec-block} \AgdaBound{S} \AgdaSymbol{(}\AgdaInductiveConstructor{↝} \AgdaInductiveConstructor{jmp[} \AgdaBound{p} \AgdaInductiveConstructor{]}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{14}{}\<[14]%
+\>[14]\AgdaDatatype{≡} \AgdaBound{S}\<%
+\\
+\>[0]\AgdaIndent{14}{}\<[14]%
+\>[14]\AgdaInductiveConstructor{,} \AgdaFunction{loadblock}\<%
+\\
+\>[14]\AgdaIndent{16}{}\<[16]%
+\>[16]\AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[14]\AgdaIndent{16}{}\<[16]%
+\>[16]\AgdaSymbol{(}\AgdaFunction{loadptr} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)} \AgdaBound{p}\AgdaSymbol{)}\<%
+\end{code}
 
 ---
 
@@ -198,7 +405,28 @@
     эквивалентно состоянию исполнителя после исполнения соответствующего
     этой функции элемента PLT при условии корректно заполненного GOT:
 
-**TODO: exec-plt**
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{exec-plt} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{f} \AgdaSymbol{:} \AgdaInductiveConstructor{block} \AgdaBound{R} \AgdaBound{DS} \AgdaBound{CS} \AgdaFunction{∈} \AgdaBound{H}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{State} \AgdaSymbol{(}\AgdaInductiveConstructor{statetype} \AgdaBound{R} \AgdaSymbol{(}\AgdaFunction{pltize} \AgdaBound{H}\AgdaSymbol{)} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{))}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaSymbol{→} \AgdaFunction{GOT[} \AgdaBound{f} \AgdaFunction{]-correctness} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaSymbol{→} \AgdaFunction{exec-block} \AgdaBound{S} \AgdaSymbol{(}\AgdaFunction{plt-stub} \AgdaSymbol{(}\AgdaFunction{got} \AgdaBound{f}\AgdaSymbol{))}\<%
+\\
+\>[4]\AgdaIndent{13}{}\<[13]%
+\>[13]\AgdaDatatype{≡} \AgdaBound{S} \AgdaInductiveConstructor{,} \AgdaFunction{loadblock} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{func} \AgdaBound{f}\AgdaSymbol{)}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{exec-plt} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p} \AgdaKeyword{rewrite} \AgdaFunction{sym} \AgdaBound{p} \AgdaSymbol{=} \AgdaFunction{exec-ijmp} \AgdaBound{S} \AgdaSymbol{(}\AgdaFunction{got} \AgdaBound{f}\AgdaSymbol{)}\<%
+\end{code}
 
 ---
 
@@ -207,7 +435,31 @@
 *   При корректно заполненном GOT верна внешняя эквивалентность блока PLT,
     использующего соответствующий функции элемент GOT, и самой функции:
 
-**TODO: сигнатура последнего доказательства**
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{proof} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{10}{}\<[10]%
+\>[10]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{f} \AgdaSymbol{:} \AgdaInductiveConstructor{block} \AgdaBound{R} \AgdaBound{DS} \AgdaBound{CS} \AgdaFunction{∈} \AgdaBound{H}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{10}{}\<[10]%
+\>[10]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{State} \AgdaSymbol{(}\AgdaInductiveConstructor{statetype} \AgdaBound{R} \AgdaSymbol{(}\AgdaFunction{pltize} \AgdaBound{H}\AgdaSymbol{)} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{))}\<%
+\\
+\>[4]\AgdaIndent{10}{}\<[10]%
+\>[10]\AgdaSymbol{→} \AgdaFunction{GOT[} \AgdaBound{f} \AgdaFunction{]-correctness} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{10}{}\<[10]%
+\>[10]\AgdaSymbol{→} \AgdaDatatype{BlockEq} \AgdaBound{S} \AgdaBound{S}\<%
+\\
+\>[10]\AgdaIndent{12}{}\<[12]%
+\>[12]\AgdaSymbol{(}\AgdaFunction{plt-stub} \AgdaSymbol{(}\AgdaFunction{got} \AgdaBound{f}\AgdaSymbol{))}\<%
+\\
+\>[10]\AgdaIndent{12}{}\<[12]%
+\>[12]\AgdaSymbol{(}\AgdaField{proj₂} \AgdaFunction{\$} \AgdaFunction{loadblock} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{func} \AgdaBound{f}\AgdaSymbol{))}\<%
+\\
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaFunction{proof} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p} \AgdaSymbol{=} \AgdaInductiveConstructor{left} \AgdaSymbol{(}\AgdaFunction{exec-plt} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p}\AgdaSymbol{)} \AgdaInductiveConstructor{equal}\<%
+\end{code}
 
 ---
 
