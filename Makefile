@@ -13,8 +13,7 @@ REPORT_SOURCES = \
 	ch_Development/sec_Conclusion.pd \
 	ch_Result/chapter.pd \
 	../Functions.lagda \
-	Conclusion.pd \
-	Licensing.pd
+	Conclusion.pd
 
 REPORT_AGDA_TRANSLATED = $(patsubst ../%.lagda,agda-latex/%.latex,$(REPORT_SOURCES))
 REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
