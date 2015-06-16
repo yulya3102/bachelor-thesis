@@ -23,7 +23,7 @@
 \renewcommand{\bibnumfmt}[1]{#1.\hfill}
 \renewcommand{\bibsection}{\likechapter{Список источников}\vspace{-2em}}
 \setlength{\bibsep}{0pt}
-\renewcommand{\bibfont}{\footnotesize}
+% \renewcommand{\bibfont}{\footnotesize}
 
 \usepackage{indentfirst}
 \frenchspacing
