@@ -138,7 +138,7 @@
 
 
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{{../images/}}
 \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
 \newcommand{\image}[2]{%
     \begin{figure}[ht]
