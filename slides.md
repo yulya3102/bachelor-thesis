@@ -36,12 +36,7 @@
 
 ![](../images/idealworld.png)
 
-В идеальном мире диаграмма коммутативна: $t \circ o = e \circ t$
-
----
-
-**TODO: теорема из алгебры о том, что если соприкасаются коммутативные
-диаграммы, то составная диаграмма коммутативна**
+В идеальном мире диаграмма коммутативна: $t \circ o \equiv e \circ t$
 
 ---
 
@@ -55,11 +50,20 @@
 
 ---
 
+![](algebra.png)
+
+$(g \circ f \equiv k \circ h) \to (m \circ k \equiv s \circ i)
+\to (m \circ g \circ f \equiv s \circ i \circ h)$
+
+---
+
 * Выбор опкодов:
     * можно верифицировать, если иметь модель CPU;
 * Генерация объектных файлов:
-    * **TODO**
+    * можно верифицировать, если формализовать формат ELF с его семантикой
+      и реализовать доказанно корректный линковщик для него;
 * Загрузка объектных файлов в память:
+    * необходимо верифицированное ядро ОС;
     * верифицированные менеджеры памяти — большая открытая проблема;
 * Техпроцесс:
     * можно только поверить.
@@ -103,15 +107,15 @@
 
 * Почему задача решаема:
     *   мы верим:
-        *   производителям CPU;
         *   соответствию ассемблера спецификации;
-        *   разработчикам ядра ОС;
         *   корректности работы с объектными файлами;
+        *   разработчикам ядра ОС;
+        *   производителям CPU;
     *   не нужна работа с динамической памятью, что не требует решения
         больших открытых проблем.
 * Проблемы:
     *   программы соответствуют некоторому ABI, и надо доказывать сохранение
-        семантики компоновщиком с точностью до заданного ABI;
+        семантики линковщиком с точностью до заданного ABI;
     *   в области формальных доказательств существуют серьезные проблемы с
         переиспользованием доказательств для слегка измененных определений.
 
@@ -136,12 +140,12 @@
 \>\AgdaFunction{DataType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{Type}\<%
 \end{code}
 
-*   Стек данных и стек вызовов:
+*   Стек вызовов и стек данных:
 
 \begin{code}%
-\>\AgdaFunction{DataStackType} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\>\AgdaFunction{DataStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{RegType}\<%
 \\
-\>\AgdaFunction{CallStackType} \AgdaSymbol{:} \AgdaPrimitiveType{Set}\<%
+\>\AgdaFunction{CallStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaSymbol{(}\AgdaFunction{RegTypes} \AgdaFunction{×} \AgdaFunction{DataStackType}\AgdaSymbol{)}\<%
 \end{code}
 
 ---
@@ -180,16 +184,6 @@
 \>[8]\AgdaSymbol{→} \AgdaDatatype{Type}\<%
 \end{code}
 
-*   Стек вызовов и стек данных:
-
-\begin{code}%
-\>\AgdaFunction{DataStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaDatatype{RegType}\<%
-\end{code}
-
-\begin{code}%
-\>\AgdaFunction{CallStackType} \AgdaSymbol{=} \AgdaDatatype{List} \AgdaSymbol{(}\AgdaFunction{RegTypes} \AgdaFunction{×} \AgdaFunction{DataStackType}\AgdaSymbol{)}\<%
-\end{code}
-
 ---
 
 # Инструкции
@@ -215,7 +209,7 @@
 
 # Мета-ассемблер
 
-*   При небольшом изменении основных определений все доказательства приходится
+*   Обычно при небольшом изменении основных определений все доказательства приходится
     менять
 *   Общую для всех языков ассемблера часть можно определить независимо от
     конкретного языка ассемблера
@@ -259,36 +253,6 @@
     *   тип не-управляющей инструкции;
     *   функция, определяющая результат исполнения управляющей инструкции;
     *   функция, определяющая результат исполнения не-управляющей инструкции.
-
----
-
-# Мета-ассемблер
-
-*   Блок $A$ в состоянии исполнителя $S_A$ и блок $B$ в состоянии
-    исполнителя $S_B$ считаются эквивалентными, если конструктивно
-    существует такой блок $C$ в состоянии исполнителя $S_C$, что исполнение
-    и $A$ из состояния $S_A$, и $B$ из состояния $S_B$ приводят к $C$ и
-    состоянию $S_C$
-
-\begin{code}%
-\>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaKeyword{data} \AgdaDatatype{BlockEq}\<%
-\\
-\>[4]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{ST₁} \AgdaBound{ST₂} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{\}}\<%
-\\
-\>[4]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{d₁} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₁}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{d₂} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₂}\AgdaSymbol{\}}\<%
-\\
-\>[4]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S₁} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₁}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaBound{S₂} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₂}\AgdaSymbol{)}\<%
-\\
-\>[4]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaBound{Block} \AgdaBound{ST₁} \AgdaBound{d₁} \AgdaSymbol{→} \AgdaBound{Block} \AgdaBound{ST₂} \AgdaBound{d₂}\<%
-\\
-\>[4]\AgdaIndent{6}{}\<[6]%
-\>[6]\AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
-\end{code}
 
 ---
 
@@ -356,7 +320,7 @@
 
 ---
 
-# Доказательства
+# Леммы
 
 *   Состояние исполнителя в момент непосредственного вызова функции
     эквивалентно состоянию исполнителя после исполнения непрямого `jmp`
@@ -364,7 +328,7 @@
 
 \begin{code}%
 \>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaFunction{exec-ijmp} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{ST}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST}\AgdaSymbol{)}\<%
+\>[4]\AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{ST}\AgdaSymbol{\}} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST}\AgdaSymbol{)}\<%
 \\
 \>[4]\AgdaIndent{14}{}\<[14]%
 \>[14]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{p} \AgdaSymbol{:} \AgdaInductiveConstructor{atom} \AgdaSymbol{(}\AgdaInductiveConstructor{block}\<%
@@ -399,7 +363,7 @@
 
 ---
 
-# Доказательства
+# Леммы
 
 *   Состояние исполнителя в момент непосредственного вызова функции
     эквивалентно состоянию исполнителя после исполнения соответствующего
@@ -407,7 +371,7 @@
 
 \begin{code}%
 \>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaFunction{exec-plt} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
+\>[4]\AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
 \\
 \>[4]\AgdaIndent{13}{}\<[13]%
 \>[13]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{f} \AgdaSymbol{:} \AgdaInductiveConstructor{block} \AgdaBound{R} \AgdaBound{DS} \AgdaBound{CS} \AgdaFunction{∈} \AgdaBound{H}\AgdaSymbol{)}\<%
@@ -423,21 +387,62 @@
 \\
 \>[4]\AgdaIndent{13}{}\<[13]%
 \>[13]\AgdaDatatype{≡} \AgdaBound{S} \AgdaInductiveConstructor{,} \AgdaFunction{loadblock} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{func} \AgdaBound{f}\AgdaSymbol{)}\<%
-\\
-\>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaFunction{exec-plt} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p} \AgdaKeyword{rewrite} \AgdaFunction{sym} \AgdaBound{p} \AgdaSymbol{=} \AgdaFunction{exec-ijmp} \AgdaBound{S} \AgdaSymbol{(}\AgdaFunction{got} \AgdaBound{f}\AgdaSymbol{)}\<%
 \end{code}
 
 ---
 
-# Доказательства
+# Эквивалентность блоков
+
+*   Блок $A$ в состоянии исполнителя $S_1$ и блок $B$ в состоянии
+    исполнителя $S_2$ считаются эквивалентными, если конструктивно
+    существует блок $C$ в состоянии исполнителя $S_C$, достижимый из $A$ в
+    состоянии $S_1$ и из $B$ в состоянии $S_2$ (частный случай
+    bisimulation).
+
+\begin{code}%
+\>[0]\AgdaIndent{4}{}\<[4]%
+\>[4]\AgdaKeyword{data} \AgdaDatatype{BlockEq}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{:} \AgdaSymbol{\{}\AgdaBound{ST₁} \AgdaBound{ST₂} \AgdaSymbol{:} \AgdaRecord{StateType}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaSymbol{\{}\AgdaBound{d₁} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₁}\AgdaSymbol{\}} \AgdaSymbol{\{}\AgdaBound{d₂} \AgdaSymbol{:} \AgdaRecord{Diff} \AgdaBound{ST₂}\AgdaSymbol{\}}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{S₁} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₁}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaBound{S₂} \AgdaSymbol{:} \AgdaRecord{State} \AgdaBound{ST₂}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{A} \AgdaSymbol{:} \AgdaBound{Block} \AgdaBound{ST₁} \AgdaBound{d₁}\AgdaSymbol{)} \AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{B} \AgdaSymbol{:} \AgdaBound{Block} \AgdaBound{ST₂} \AgdaBound{d₂}\AgdaSymbol{)}\<%
+\\
+\>[4]\AgdaIndent{6}{}\<[6]%
+\>[6]\AgdaSymbol{→} \AgdaPrimitiveType{Set}\<%
+\end{code}
+
+---
+
+# Эквивалентность программ
+
+*   Программа $A$ — набор блоков памяти, подмножеством которого является набор
+    блоков кода, среди которых указан стартовый блок $main_A$
+*   Две программы $A$ и $B$ считаются эквивалентными, если для любого
+    корректного состояния исполнителя $S_{start}$ эквивалентны $main_A$ в
+    состоянии $S_{start}$ и $main_B$ в состоянии $S_{start}$
+*   Отношение bisimulation является отношением
+    эквивалентности, следовательно, подстановочным. Тогда если для
+    любого состояния $S$ блок $A$ эквивалентен блоку $B$, то замена блока
+    $A$ на блок $B$ в программе не влияет на результат исполнения.
+
+---
+
+# Теорема
 
 *   При корректно заполненном GOT верна внешняя эквивалентность блока PLT,
     использующего соответствующий функции элемент GOT, и самой функции:
 
 \begin{code}%
 \>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaFunction{proof} \AgdaSymbol{:} \AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
+\>[4]\AgdaSymbol{∀} \AgdaSymbol{\{}\AgdaBound{R} \AgdaBound{H} \AgdaBound{DS} \AgdaBound{CS}\AgdaSymbol{\}}\<%
 \\
 \>[4]\AgdaIndent{10}{}\<[10]%
 \>[10]\AgdaSymbol{→} \AgdaSymbol{(}\AgdaBound{f} \AgdaSymbol{:} \AgdaInductiveConstructor{block} \AgdaBound{R} \AgdaBound{DS} \AgdaBound{CS} \AgdaFunction{∈} \AgdaBound{H}\AgdaSymbol{)}\<%
@@ -456,43 +461,20 @@
 \\
 \>[10]\AgdaIndent{12}{}\<[12]%
 \>[12]\AgdaSymbol{(}\AgdaField{proj₂} \AgdaFunction{\$} \AgdaFunction{loadblock} \AgdaSymbol{(}\AgdaField{State.memory} \AgdaBound{S}\AgdaSymbol{)} \AgdaSymbol{(}\AgdaFunction{func} \AgdaBound{f}\AgdaSymbol{))}\<%
-\\
-\>[0]\AgdaIndent{4}{}\<[4]%
-\>[4]\AgdaFunction{proof} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p} \AgdaSymbol{=} \AgdaInductiveConstructor{left} \AgdaSymbol{(}\AgdaFunction{exec-plt} \AgdaBound{f} \AgdaBound{S} \AgdaBound{p}\AgdaSymbol{)} \AgdaInductiveConstructor{equal}\<%
 \end{code}
-
----
-
-# Эквивалентность программ
-
-*   Неформально: две программы можно считать эквивалентными, если для
-    любого корректного начального состояния исполнителя результаты
-    выполнения программ одинаковы
-*   Для каждой программы $A$ задан стартовый блок $B_A$
-*   Две программы $A$ и $B$ считаются эквивалентными, если для любого
-    корректного состояния исполнителя $S_{start}$ эквивалентны $B_A$ в
-    состоянии $S_{start}$ и $B_B$ в состоянии $S_{start}$
-
----
-
-# Предположения
-
-*   Если для любого состояния $S$ блок $A$ эквивалентен блоку $B$, то
-    замена блока $A$ на блок $B$ в программе не влияет на результат исполнения
-*   Добавление новых элементов в память с соответствующей заменой
-    указателей не влияет на результат исполнения
 
 ---
 
 # Эквивалентность программ, слинкованных статически и динамически
 
-*   Эквивалентны:
-    *   статически слинкованная программа;
-    *   статически слинкованная программа с добавленными таблицами GOT и PLT;
-    *   статически слинкованная программа с добавленными таблицами GOT и PLT с
+*   В предположении, что добавление новых элементов в релоцируемый код не
+    изменяет семантику программы, эквивалентны:
+    *   оригинальная программа (статически слинкованная программа);
+    *   программа с добавленными таблицами GOT и PLT;
+    *   программа с добавленными таблицами GOT и PLT с
         заменой вызовов функций на вызовы соответствующих элементов PLT.
-*   Последний пункт после загрузки в память структурно эквивалентен
-    динамически слинкованной программе с точностью до перестановки данных,
+*   Последний пункт после загрузки в память по определению является
+    динамически слинкованной программой с точностью до перестановки данных,
     расположенных в памяти.
 
 ---
@@ -526,21 +508,8 @@
 *   Доказана внешняя эквивалентность (эквивалентность вызовов) некоторой
     функции и соответствующего ей элемента PLT при условии корректно
     заполненного GOT
-*   В указанных выше предположениях доказана эквивалентность статически и
+*   В указанном ранее предположении доказана эквивалентность статически и
     динамически слинкованных программ
-
----
-
-# PROFIT
-
-%TODO перепилить (пока непонятно как)
-
-* Углубится стек доказанного про тулчейны разработки.
-* Можно будет ловить ошибки в кодогенераторах и компоновщиках:
-    * глупые баги (например, обращение к чужому GOT, когда забыли PC stub);
-    * нарушение ABI (это не всегда понятно как описать просто типизацией).
-* В перспективе можно будет даже доказывать какие-то полезные утверждения:
-    * например, безопасность по отношению к setuid бинарникам.
 
 ---
 
