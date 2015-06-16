@@ -1,0 +1,126 @@
+digraph G {
+    node [
+        label = ""
+    ]
+    rankdir = LR
+    subgraph cluster_ld {
+        style = invis
+        node [ color = green ]
+        ld1 -> ld2 -> ld3 -> ld4 -> ld5 -> ld6 -> ld7 -> ld8
+        ld [ label = "ld mem", shape = none ]
+        ld8 [ label = "...", shape = none]
+        ld -> ld1 [ style = invis ]
+    }
+    subgraph cluster_map {
+        style = invis
+        node [ color = "#00ff005f" ]
+        edge [ style = invis ]
+        map -> map1 -> map2 -> map3 -> map4 -> map5 -> map6
+        map [ label = "map mem", shape = none, style = solid ]
+        map3 [ color = green, style = solid ]
+    }
+    subgraph cluster_obj {
+        style = invis
+        node [ color = "#ff00005f" ]
+        edge [ style = invis ]
+        obj -> obj1 -> obj2 -> obj3 -> obj4 -> obj5 -> obj6
+        obj [ label = ".o", shape = none, style = solid ]
+        obj3 [ color = red, style = solid ]
+    }
+    subgraph cluster_op {
+        style = invis
+        node [ color = "#ff00005f" ]
+        edge [ style = invis ]
+        op -> op1 -> op2 -> op3 -> op4 -> op5 -> op6
+        op [ label = opcode, shape = none, style = solid ]
+        op3 [ color = red, style = solid ]
+    }
+    subgraph cluster_ASM {
+        style = invis
+        asm1 -> asm2 -> asm3 -> asm4 -> asm5 -> asm6
+        ASM [ label = ASM, shape = none ]
+        ASM -> asm1 [ style = invis ]
+    }
+    subgraph cluster_In {
+        style = invis
+        in1 -> in2 -> in3 -> in4 -> in5 -> in6
+        In [ label = Iₙ, shape = none ]
+        In -> in1 [ style = invis ]
+    }
+    subgraph cluster_Is {
+        node [ shape = none, label = "..." ]
+        edge [ style = invis ]
+        style = invis
+        Is -> is1 -> is2 -> is3 -> is4 -> is5 -> is6
+        Is [ label = "", shape = none ]
+    }
+    subgraph cluster_I1 {
+        style = invis
+        i11 -> i12 -> i13 -> i14 -> i15 -> i16
+        I1 [ label = I₁, shape = none ]
+        I1 -> i11 [ style = invis ]
+    }
+    subgraph cluster_S {
+        style = invis
+        s1 -> s2 -> s3 -> s4 -> s5 -> s6
+        S [ label = S, shape = none ]
+        S -> s1 [ style = invis ]
+    }
+    subgraph {
+        edge [ constraint = false ]
+        s1 -> i11 
+        s1 -> i12
+        s2 -> i13
+        s3 -> i13
+        s4 -> i14
+
+        i11 -> is1
+        i12 -> is2
+        i13 -> is3
+        i14 -> is4
+
+        is1 -> in1
+        is2 -> in2
+        is3 -> in3
+        is4 -> in4
+
+        subgraph {
+            edge [ color = blue ]
+            in1 -> asm1
+            in2 -> asm2
+            in2 -> asm3
+            in3 -> asm3
+            in4 -> asm4
+            in5 -> asm5
+            in5 -> asm6
+        }
+
+        asm1 -> op1
+        asm2 -> op2
+        asm3 -> op3
+        asm4 -> op4
+        asm5 -> op5
+        asm6 -> op6
+
+        op1 -> obj1
+        op2 -> obj2
+        op3 -> obj3
+        op4 -> obj4
+        op5 -> obj5
+        op6 -> obj6
+
+        obj1 -> map1
+        obj2 -> map2
+        obj3 -> map3
+        obj4 -> map4
+        obj5 -> map5
+        obj6 -> map6
+
+        map1 -> ld1
+        map2 -> ld2
+        map3 -> ld3
+        map4 -> ld4
+        map5 -> ld5
+        map6 -> ld6
+    }
+}
