@@ -1,19 +1,21 @@
 report: main.pdf
 
+AGDA_SOURCES = ..
+
 REPORT_SOURCES = \
 	Introduction.pd \
 	01.pd \
 	02-intro.pd \
-	../DevCore.lagda \
-	../SSA.lagda \
-	../NotSSA.lagda \
-	../Meta.lagda \
+	$(AGDA_SOURCES)/DevCore.lagda \
+	$(AGDA_SOURCES)/SSA.lagda \
+	$(AGDA_SOURCES)/NotSSA.lagda \
+	$(AGDA_SOURCES)/Meta.lagda \
 	02-conclusion.pd \
 	03-result.pd \
-	../Functions.lagda \
+	$(AGDA_SOURCES)/Functions.lagda \
 	Conclusion.pd
 
-REPORT_AGDA_TRANSLATED = $(patsubst ../%.lagda,../%.latex,$(REPORT_SOURCES))
+REPORT_AGDA_TRANSLATED = $(patsubst $(AGDA_SOURCES)/%.lagda,$(AGDA_SOURCES)/%.latex,$(REPORT_SOURCES))
 REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
 
 %.latex: %.pd
@@ -25,11 +27,11 @@ REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
 		--listings --chapters \
 		-o $@ $<
 
-../%.pd: ../%.tex
+$(AGDA_SOURCES)/%.pd: $(AGDA_SOURCES)/%.tex
 	mv $< $@
 
-../%.tex: ../%.lagda
-	make -C .. $(patsubst ../%,%,$(@))
+$(AGDA_SOURCES)/%.tex: $(AGDA_SOURCES)/%.lagda
+	make -C $(AGDA_SOURCES) $(patsubst $(AGDA_SOURCES)/%,%,$(@))
 
 main.latex: $(REPORT)
 	pandoc \
