@@ -15,7 +15,7 @@
    inkscape:version="0.48.5 r10040"
    width="1112"
    height="741"
-   sodipodi:docname="ld.svg">
+   sodipodi:docname="vellvm.svg">
   <metadata
      id="metadata7591">
     <rdf:RDF>
@@ -44,7 +44,7 @@
      id="namedview7587"
      showgrid="true"
      inkscape:zoom="0.78272605"
-     inkscape:cx="243.63018"
+     inkscape:cx="448.04397"
      inkscape:cy="370.5"
      inkscape:window-x="0"
      inkscape:window-y="16"
@@ -52,19 +52,20 @@
      inkscape:current-layer="svg7585">
     <inkscape:grid
        type="xygrid"
-       id="grid4096" />
+       id="grid8475" />
   </sodipodi:namedview>
   <image
      width="1112"
      height="741"
-     xlink:href="file:///home/yulya3102/Dropbox/itmo/year4/thesis/agda/images/diagram.png"
+     xlink:href="file://DIRECTORY/diagram.png"
      id="image7593"
      x="0"
      y="0" />
-  <path
-     style="fill:none;stroke:#00ff00;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-     d="m 820,321 -620,0 0,340 720,0 z"
-     id="path4098"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="ccccc" />
+  <rect
+     style="fill:none;stroke:#0000ff;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     id="rect8405"
+     width="620"
+     height="140"
+     x="200"
+     y="261" />
 </svg>

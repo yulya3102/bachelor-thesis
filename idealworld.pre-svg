@@ -100,7 +100,7 @@
     </marker>
   </defs>
   <image
-     xlink:href="file:///home/yulya3102/Dropbox/itmo/year4/thesis/agda/images/diagram.png"
+     xlink:href="file://DIRECTORY/diagram.png"
      x="0"
      y="0"
      width="1112"

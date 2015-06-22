@@ -15,7 +15,7 @@
    inkscape:version="0.48.5 r10040"
    width="1112"
    height="741"
-   sodipodi:docname="faith.svg">
+   sodipodi:docname="memory.svg">
   <metadata
      id="metadata7591">
     <rdf:RDF>
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,43 +43,29 @@
      inkscape:window-height="752"
      id="namedview7587"
      showgrid="true"
-     inkscape:zoom="1.5654521"
-     inkscape:cx="469.05064"
-     inkscape:cy="277.33559"
+     inkscape:zoom="0.78272605"
+     inkscape:cx="343.9207"
+     inkscape:cy="370.5"
      inkscape:window-x="0"
      inkscape:window-y="16"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg7585">
     <inkscape:grid
        type="xygrid"
-       id="grid9519" />
+       id="grid10029" />
   </sodipodi:namedview>
   <image
      width="1112"
      height="741"
-     xlink:href="file:///home/yulya3102/Dropbox/itmo/year4/thesis/agda/images/faith-diagram.png"
+     xlink:href="file://DIRECTORY/diagram.png"
      id="image7593"
      x="0"
      y="0" />
   <rect
-     style="fill:none;stroke:#ff0000;stroke-width:2.26041341;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     style="fill:none;stroke:#ffff00;stroke-width:3;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
      id="rect8405"
      width="620"
-     height="92.106567"
+     height="139.99998"
      x="200"
-     y="341" />
-  <rect
-     style="fill:none;stroke:#ff7a00;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-     id="rect8405-4"
-     width="620"
-     height="66.180923"
-     x="200"
-     y="434.81906" />
-  <rect
-     style="fill:none;stroke:#ffff00;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-     id="rect8405-4-1"
-     width="620"
-     height="99.059387"
-     x="200"
-     y="501.94061" />
+     y="461" />
 </svg>

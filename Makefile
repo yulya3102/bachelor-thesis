@@ -26,3 +26,6 @@ algebra.png: algebra.dot
 
 %.png: %.svg diagram.png
 	convert $< $@
+
+%.svg: %.pre-svg
+	sed 's%DIRECTORY%$(PWD)%' $< > $@
