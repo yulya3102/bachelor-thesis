@@ -2,16 +2,14 @@ report: main.pdf
 
 REPORT_SOURCES = \
 	Introduction.pd \
-	ch_First/chapter.pd \
-	ch_Development/chapter.latex \
+	01.pd \
+	02-intro.pd \
 	../DevCore.lagda \
-	ch_Development/sec_SSA/section.pd \
 	../SSA.lagda \
-	ch_Development/sec_SSA/problems.pd \
 	../NotSSA.lagda \
 	../Meta.lagda \
-	ch_Development/sec_Conclusion.pd \
-	ch_Result/chapter.pd \
+	02-conclusion.pd \
+	03-result.pd \
 	../Functions.lagda \
 	Conclusion.pd
 
