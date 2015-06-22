@@ -1,4 +1,4 @@
-all: diagram.png idealworld.png idealcompiler.png compcert.png vellvm.png faith.png memory.png ld.png
+all: diagram.png idealworld.png idealcompiler.png compcert.png vellvm.png faith.png memory.png ld.png algebra.png
 
 pre-diagram.png: diagram.dot
 	dot -Tpng -o $@ $<
@@ -20,6 +20,9 @@ faith-diagram.png: faith-axis.svg pre-faith-diagram.png
 
 faith.png: faith.svg faith-diagram.png
 	convert $< $@
+
+algebra.png: algebra.dot
+	dot -Tpng -o $@ $<
 
 %.png: %.svg diagram.png
 	convert $< $@
