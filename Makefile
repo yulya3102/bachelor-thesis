@@ -28,4 +28,4 @@ algebra.png: algebra.dot
 	convert $< $@
 
 %.svg: %.pre-svg
-	sed 's%DIRECTORY%$(PWD)%' $< > $@
+	sed 's%DIRECTORY%$(CURDIR)%' $< > $@
