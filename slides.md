@@ -50,7 +50,7 @@
 
 ---
 
-![](algebra.png)
+![](../images/algebra.png)
 
 $(g \circ f \equiv k \circ h) \to (m \circ k \equiv s \circ i)
 \to (m \circ g \circ f \equiv s \circ i \circ h)$
