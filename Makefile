@@ -13,7 +13,7 @@ REPORT_SOURCES = \
 	../Functions.lagda \
 	Conclusion.pd
 
-REPORT_AGDA_TRANSLATED = $(patsubst ../%.lagda,agda-latex/%.latex,$(REPORT_SOURCES))
+REPORT_AGDA_TRANSLATED = $(patsubst ../%.lagda,../%.latex,$(REPORT_SOURCES))
 REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
 
 %.latex: %.pd
@@ -25,11 +25,11 @@ REPORT = $(patsubst %.pd,%.latex,$(REPORT_AGDA_TRANSLATED))
 		--listings --chapters \
 		-o $@ $<
 
-agda-latex/%.pd: agda-latex/%.tex
+../%.pd: ../%.tex
 	mv $< $@
 
-agda-latex/%.tex: ../%.lagda
-	make -C .. $(patsubst agda-latex/%,%,$(@))
+../%.tex: ../%.lagda
+	make -C .. $(patsubst ../%,%,$(@))
 
 main.latex: $(REPORT)
 	pandoc \
