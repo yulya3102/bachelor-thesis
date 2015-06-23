@@ -1,0 +1,28 @@
+\begin{titlepage}
+\newpage
+\centering
+
+Санкт-Петербургский национальный исследовательский университет\\
+информационных технологий, механики и оптики\\
+Факультет информационных технологий и программирования\\
+Кафедра компьютерных технологий
+
+\vfill
+
+\makeatletter
+\textbf{\large
+\@title
+}
+\makeatother
+
+\vspace{2em}
+
+\makeatletter
+\@author
+\makeatother
+
+\vfill
+
+Санкт-Петербург\\
+\the\year
+\end{titlepage}

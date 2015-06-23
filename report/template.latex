@@ -1,0 +1,22 @@
+\title{Формальное доказательство эквивалентности программ, скомпилированных в ABI со статическим и динамическим связыванием}
+\author{Пьянкова Ю. А.\\
+Научный руководитель: Малаховски Я. М.}
+
+
+\input{preamble.latex}
+
+\begin{document}
+$include-before$
+
+\addtocounter{page}{3}
+
+$if(toc)$
+\tableofcontents
+$endif$
+
+$body$
+
+\bibliography{bib}
+
+$include-after$
+\end{document}
