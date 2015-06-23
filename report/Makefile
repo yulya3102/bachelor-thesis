@@ -1,6 +1,6 @@
 report: main.pdf
 
-AGDA_SOURCES = ..
+AGDA_SOURCES = ../agda
 
 REPORT_SOURCES = \
 	Introduction.pd \
